@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30524.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5FF16376-6E52-41D3-AFA0-14443AD5D0D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{1FCBEEB3-61C1-4D83-803D-0BC2F0C95A76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressur.Test", "test\Expressur.Test\Expressur.Test.csproj", "{61603D52-1190-4E4C-A9A7-309D03F5073A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expressur", "src\Expressur\Expressur.csproj", "{7F973D25-4908-4975-AB00-32C43ABE424A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solutionitems", "solutionitems", "{05274815-0AA8-4707-8CE2-F4091576AA15}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61603D52-1190-4E4C-A9A7-309D03F5073A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61603D52-1190-4E4C-A9A7-309D03F5073A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61603D52-1190-4E4C-A9A7-309D03F5073A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61603D52-1190-4E4C-A9A7-309D03F5073A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F973D25-4908-4975-AB00-32C43ABE424A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F973D25-4908-4975-AB00-32C43ABE424A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F973D25-4908-4975-AB00-32C43ABE424A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F973D25-4908-4975-AB00-32C43ABE424A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61603D52-1190-4E4C-A9A7-309D03F5073A} = {1FCBEEB3-61C1-4D83-803D-0BC2F0C95A76}
+		{7F973D25-4908-4975-AB00-32C43ABE424A} = {5FF16376-6E52-41D3-AFA0-14443AD5D0D7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1871569B-D12A-4246-8469-DB6D05B6AE3E}
+	EndGlobalSection
+EndGlobal
