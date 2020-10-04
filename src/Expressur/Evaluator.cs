@@ -132,7 +132,7 @@ namespace Expressur
         public IDictionary<string, decimal?> EvaluateExpressions(IDictionary<string, string> formulas, IDictionary<string, decimal?> context)
         {
             IDictionary<string, decimal?> results = new Dictionary<string, decimal?>(context);
-            IDictionary<string, string> formulasToCalcuate = new Dictionary<string, string>(formulas);
+            ICollection<KeyValuePair<string, string>> formulasToCalcuate = new List<KeyValuePair<string, string>>(formulas);
             bool wereAnyFound = false;
             do
             {

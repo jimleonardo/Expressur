@@ -7,7 +7,7 @@ namespace Expressur
     public class UnableToResolveFormulaException : Exception
     {
         public UnableToResolveFormulaException() { }
-        public UnableToResolveFormulaException(IDictionary<string,string> failedFormula) { foreach (var ff in failedFormula) { Data.Add(ff.Key, ff.Value); } }
+        public UnableToResolveFormulaException(ICollection<KeyValuePair<string, string>> failedFormula) { foreach (var ff in failedFormula) { Data.Add(ff.Key, ff.Value); } }
         public UnableToResolveFormulaException(string message) : base(message) { }
         public UnableToResolveFormulaException(string message, Exception inner) : base(message, inner) { }
         protected UnableToResolveFormulaException(
