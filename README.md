@@ -29,7 +29,9 @@ public void EvaluateExpressions_Evaluates_Correctly_With_Context()
 }
 ```
 
-The real purpose of Expressur is to be a meaningful but straightforward set of code that can be ported to almost any other language so that the languages can be compared. It does this by taking a normal problem, arithmetic, and using string manipulation, iteration, and primitive operations. This uses the [Shunting Yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) to convert the expressions into [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) in order to handle operator precedence.
+The real purpose of Expressur is to be a meaningful but straightforward set of code that can be ported to almost any other language so that the languages can be compared. It does this by taking a normal problem, arithmetic, and using string manipulation, iteration, and primitive operations. 
+
+This uses the [Shunting Yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) to convert the expressions into [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) in order to handle operator precedence.
 
 ## PseudoGrammar
 
