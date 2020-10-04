@@ -1,7 +1,4 @@
 # Expressur
-
-> **Note** This uses .Net 5 RC1!
-
 Expressur does some basic math. 
 
 The real purpose of Expressur is to be a meaningful but straightforward set of code that can be ported to almost any other language so that the languages can be compared. It does this by taking a normal problem, arithmetic, and using string manipulation, iteration, and primitive operations. 
