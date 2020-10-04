@@ -25,7 +25,7 @@ namespace Expressur
                 {
                     currentToken.Append(current);
                 }
-                else if (current == '(' || current == ')' || current == '*' || current == '/')
+                else if (current == '(' || current == ')' || current == '*' || current == '/' || current == '^')
                 {
                     currentToken = OutputToken(output, currentToken);
                     output.Add(current.ToString());
@@ -44,12 +44,22 @@ namespace Expressur
                             currentToken = OutputToken(output, currentToken);
                             output.Add(current.ToString());
                         }                        
-                        else if (next.IsNumberCharacter())
+                        else if (next.IsNumberCharacter() && (last.IsOperator() || last.IsWhiteSpace() || last == '('))
                         {
-                            if (last.IsOperator() || last.IsWhiteSpace() || last == '(')
-                            {
+                            //if 
+                            //{
                                 currentToken.Append(current);
-                            }
+                            //}
+                            //else
+                            //{
+                            //    currentToken = OutputToken(output, currentToken);
+                            //    output.Add(current.ToString());
+                            //}
+                        }
+                        else
+                        {
+                            currentToken = OutputToken(output, currentToken);
+                            output.Add(current.ToString());
                         }
                     }
                 }
@@ -88,7 +98,7 @@ namespace Expressur
 
         public static bool IsOperator(this char c)
         {
-            return c == '*' || c == '-' || c == '+' || c == '/';
+            return c == '*' || c == '-' || c == '+' || c == '/' || c == '|' || c == '^';
         }
     }
 }
