@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xunit;
 using Expressur;
 using Xunit.Sdk;
+using System.Net.WebSockets;
 
 namespace Expressur.Test
 {
@@ -26,6 +27,30 @@ namespace Expressur.Test
         {
             var result = (new Evaluator()).EvaluateExpression(expression, context);
             Assert.Equal(expected, result);
+        }
+
+        [Fact]
+        public void EvaluateExpression_Throws_If_Unbalanced_Left_Parens()
+        {
+            var evaluator = new Evaluator();
+
+            Assert.Throws<ArgumentException>(() => evaluator.EvaluateExpression(" 1+ 2 * (3 +4"));
+        }
+
+        [Fact]
+        public void EvaluateExpression_Throws_If_Unbalanced_Right_Parens()
+        {
+            var evaluator = new Evaluator();
+            
+            Assert.Throws<ArgumentException>(() => evaluator.EvaluateExpression(" 1+ 2 * +3 +4 )"));
+        }
+
+        [Fact]
+        public void EvaluateExpression_Throws_If_Not_Valid_Expression()
+        {
+            var evaluator = new Evaluator();
+
+            Assert.Throws<ArgumentException>(() => evaluator.EvaluateExpression(" 1+ 2 * +3 + 4 5"));
         }
 
         [Fact]
@@ -50,6 +75,27 @@ namespace Expressur.Test
             Assert.Equal(3m, results["aplusb"].Value);
             Assert.Equal(7m, results["cplusabplusb"].Value);
             Assert.Equal(0.429m, results["extraindirection"].Value, 3);
+        }
+
+        [Fact]
+        public void EvaluateExpressions_Throws_If_CouldNot_Resolve_All()
+        {
+            IDictionary<string, string> formula = new Dictionary<string, string>
+            {
+                { "cplusabplusb", "c + aplusb" },
+                { "aplusb", "a + b" },
+                { "extraIndirection", "aplusb/cplusabplusb" },
+                { "cannotResolve", "aplusb/cplusabplusbminusd" }
+            };
+
+            IDictionary<string, decimal?> context = new Dictionary<string, decimal?>
+            {
+                {"a", 1 },
+                { "b", 2 },
+                { "c", 4 }
+            };
+
+            Assert.Throws<UnableToResolveFormulaException>(() => (new Evaluator()).EvaluateExpressions(formula, context));
         }
 
         [Fact]
@@ -84,6 +130,9 @@ namespace Expressur.Test
                 new object[]{"2 * (1 + 1)", 4m },
                 new object[]{"9 ^ (7 - 5)", 81m },
                 new object[]{"9 / 2", 4.5m },
+                new object[]{"9 = 2", 0m },
+                new object[]{"9 = 9", 1m },
+                new object[]{"3 % 2", 1m },
             };
         }
     }

@@ -25,7 +25,7 @@ namespace Expressur
                 {
                     currentToken.Append(current);
                 }
-                else if (current == '(' || current == ')' || current == '*' || current == '/' || current == '^')
+                else if (current == '(' || current == ')' || current == '*' || current == '/' || current == '^' || current == '%' || current == '=')
                 {
                     currentToken = OutputToken(output, currentToken);
                     output.Add(current.ToString());
@@ -98,7 +98,7 @@ namespace Expressur
 
         public static bool IsOperator(this char c)
         {
-            return c == '*' || c == '-' || c == '+' || c == '/' || c == '|' || c == '^';
+            return c == '*' || c == '-' || c == '+' || c == '/' || c == '|' || c == '^' || c == '%' || c == '=';
         }
     }
 }

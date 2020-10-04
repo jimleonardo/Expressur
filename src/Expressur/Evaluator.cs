@@ -31,6 +31,7 @@ namespace Expressur
 
         private IDictionary<string, int> OperatorPrecedence = new Dictionary<string, int>
         {
+            { "=", 10 },
             { "^", 40 },
             { "+", 50 },
             { "-", 50 },
@@ -132,18 +133,14 @@ namespace Expressur
         public IDictionary<string, decimal?> EvaluateExpressions(IDictionary<string, string> formulas, IDictionary<string, decimal?> context)
         {
             IDictionary<string, decimal?> results = new Dictionary<string, decimal?>(context);
-            ICollection<KeyValuePair<string, string>> formulasToCalcuate = new List<KeyValuePair<string, string>>(formulas);
+            ICollection<KeyValuePair<string, string>> formulasToCalculate = new List<KeyValuePair<string, string>>(formulas);
             bool wereAnyFound = false;
             do
             {
                 wereAnyFound = false;
                 IDictionary<string, string> unCalculatedFormulas = new Dictionary<string, string>();
-                foreach (var formula in formulasToCalcuate)
+                foreach (var formula in formulasToCalculate)
                 {
-                    if (results.ContainsKey(formula.Key))
-                    {
-                        continue;
-                    }
                     var result = EvaluateExpression(formula.Value, results);
                     if (result != null)
                     {
@@ -155,13 +152,13 @@ namespace Expressur
                         unCalculatedFormulas.Add(formula);
                     }
                 }
-                formulasToCalcuate = unCalculatedFormulas;
+                formulasToCalculate = unCalculatedFormulas;
             }
-            while (wereAnyFound && formulasToCalcuate.Any());
+            while (wereAnyFound && formulasToCalculate.Any());
 
-            if (formulasToCalcuate.Any())
+            if (formulasToCalculate.Any())
             {
-                throw new UnableToResolveFormulaException(formulasToCalcuate);
+                throw new UnableToResolveFormulaException(formulasToCalculate);
             }
 
             return results;
@@ -214,6 +211,7 @@ namespace Expressur
                 }
                 else if (next == ")")
                 {
+                    bool foundLeftParens = false;
                     while (operatorStack.Any())
                     {
                         string op = operatorStack.Pop().op;
@@ -223,8 +221,14 @@ namespace Expressur
                         }
                         else
                         {
+                            foundLeftParens = true;
                             break;
                         }
+                    }
+
+                    if (!foundLeftParens)
+                    {
+                        throw new System.ArgumentException($"Parenthesis were not balanced in the expression {expression}. Missing Left Parenthesis", nameof(expression));
                     }
                 }
             }
@@ -233,7 +237,7 @@ namespace Expressur
                 var op = operatorStack.Pop().op;
                 if (op == "(")
                 {
-                    throw new System.ArithmeticException("Parenthesis were not balanced.");
+                    throw new System.ArgumentException($"Parenthesis were not balanced in the expression {expression}. Missing Right Parenthesis", nameof(expression));
                 }
                 outputQueue.Enqueue(op);
             }
