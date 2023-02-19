@@ -1,9 +1,9 @@
 # Expressur
 Expressur does some basic math. 
 
-The real purpose of Expressur is to be a meaningful but straightforward set of code that can be ported to almost any other language so that the languages can be compared. It does this by taking a normal problem, arithmetic, and using string manipulation, iteration, and primitive operations. 
+The real reason I built Expressur is to be a meaningful but straightforward set of code that can be ported to almost any other language so that the languages can be compared. It does this by taking a normal problem, arithmetic, and using string manipulation, iteration, and primitive operations. 
 
-It can also calculate the results of a set of formula, including formula that rely on the results of other formula. For example, this test from  `EvaluatorTests.cs` shows the formula "extraindirection" relying on the results from two other formula, including a formula that in turn relies on other formula.
+It can also calculate the results of a set of formula, including formula that rely on the results of other formula. For example, this test from  `EvaluatorTests.cs` shows this "extra indirection" where one formula relies on the results from two other formula, including a formula that in turn relies on other formula.
 
 ```csharp
 [Fact]
@@ -32,8 +32,7 @@ public void EvaluateExpressions_Evaluates_Correctly_With_Context()
 }
 ```
 
-
-This uses the [Shunting Yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) to convert the expressions into [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) in order to handle operator precedence.
+This uses the [Shunting Yard Algorithm](https://en.wikipedia.org/wiki/Shunting-yard_algorithm) to convert the expressions into [Reverse Polish Notation](https://en.wikipedia.org/wiki/Reverse_Polish_notation) in order to handle operator precedence. This is a relatively old school technique suitable for handling arithmetic expressions, but won't be a good basis for building a whole programming language.
 
 ## PseudoGrammar
 
@@ -43,11 +42,18 @@ This uses the [Shunting Yard Algorithm](https://en.wikipedia.org/wiki/Shunting-y
 
 *token* := *identifier* | *number*
 
-*operator* := [*/+-%^]
+*operator* := [*/+-%^=]
 
 *expression* := [(]*expression*|*token* *operator* *expression*|*token*[)]
 
+Expressur handles all numbers as Base-10 decimals. This will meet most end users' expectations for most scenarios.
 
+### Operators supported
 
-
-
+- "+" - addition (1 + 1 equals 2)
+- "-" - subtraction (2 - 2 equals 0)
+- "*" - multiplication (3 * 3 equals 9)
+- "/" - division (4 / 4 equals 1)
+- "%" - remainder (5%2 equals 1)
+- "^" - power (6^6 equals 46656)
+- "=" - equals (7=7 equals 1 [true], 7=9 equals 0 [false])
