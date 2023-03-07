@@ -133,6 +133,8 @@ namespace Expressur.Test
                 new object[]{"9 = 2", 0m },
                 new object[]{"9 = 9", 1m },
                 new object[]{"3 % 2", 1m },
+                new object[]{"1 +555", 556m},
+                new object[]{"1+ 555", 556m},
             };
         }
     }

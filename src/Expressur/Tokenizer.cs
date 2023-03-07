@@ -32,6 +32,7 @@ namespace Expressur
                 }
                 else if (current == '-' || current == '+')
                 {
+                    var lastToken = output.LastOrDefault();
                     if (last == default)
                     { // + or - at beggining is always positive or negative
                         currentToken.Append(current);
@@ -39,7 +40,11 @@ namespace Expressur
                     else if (expression.Length > i)
                     {
                         char next = expression[i + 1];
-                        if (char.IsWhiteSpace(next) || next.IsOperator() || next == '(')
+                        if (
+                            (char.IsWhiteSpace(next) || next.IsOperator() || next == '(')
+                            ||
+                            (next.IsNumberCharacter() && (lastToken != "(" || !output.Any()) && (lastToken?.Length == 1 && !lastToken[0].IsOperator() ))
+                            )
                         {
                             currentToken = OutputToken(output, currentToken);
                             output.Add(current.ToString());

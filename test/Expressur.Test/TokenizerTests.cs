@@ -42,7 +42,9 @@ namespace Expressur.Test
                 new object[]{ "1 + abn.b", new string[] {"1", "+" , "abn.b"} },
                 new object[]{ "(1 + 1)*2", new string[] {"(","1", "+" , "1", ")", "*", "2"} },
                 new object[]{ "(1 + cash.cycle)*2", new string[] {"(","1", "+" , "cash.cycle", ")", "*", "2"} },
-                new object[]{ "2 / 1", new string[] {"2", "/" , "1"} }
+                new object[]{ "2 / 1", new string[] {"2", "/" , "1"} },
+                new object[]{ "1 +555", new string[] {"1", "+" , "555"} },
+                new object[]{ "1+ 555", new string[] {"1", "+" , "555"} }
             };
         }
 
