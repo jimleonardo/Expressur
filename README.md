@@ -57,3 +57,7 @@ Expressur handles all numbers as Base-10 decimals. This will meet most end users
 - "%" - remainder (5%2 equals 1)
 - "^" - power (6^6 equals 46656)
 - "=" - equals (7=7 equals 1 [true], 7=9 equals 0 [false])
+
+## Updated to .NET 8
+
+Expressur has been updated to .NET 8. Performance is substantially improved just with the upgrade. See results here <./dotnet7_vs_dotnet8.ipynb>.
