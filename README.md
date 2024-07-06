@@ -60,4 +60,4 @@ Expressur handles all numbers as Base-10 decimals. This will meet most end users
 
 ## Updated to .NET 8
 
-Expressur has been updated to .NET 8. Performance is substantially improved just with the upgrade. See results here <./dotnet7_vs_dotnet8.ipynb>.
+Expressur has been updated to .NET 8. Performance is substantially improved just with the upgrade. See results [here](./dotnet7_vs_dotnet8.ipynb).
